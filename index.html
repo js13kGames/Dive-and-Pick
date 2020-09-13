@@ -1,4 +1,4 @@
-﻿
+
 <!DOCTYPE HTML>
 <html lang="en">
 <head>
@@ -11,8 +11,8 @@ body { margin: 0; padding: 0; background: #000;}
 canvas { display: block; margin: 0 auto; background: #fff; }
 </style>
 </head>
-<body>
-<canvas></canvas>
+<body onload="_init()">
+<canvas id="myCanvas"></canvas>
 <script>
 
 var AudioContext = window.AudioContext || window.webkitAudioContext;
@@ -445,7 +445,7 @@ function _init() {
   _RATIO = WIDTH / HEIGHT;
   _currentWidth = WIDTH;
   _currentHeight = HEIGHT;
-  _canvas = document.getElementsByTagName('canvas')[0];
+  _canvas = document.getElementById('myCanvas');
   _canvas.width = WIDTH;
   _canvas.height = HEIGHT;
   _ctx = _canvas.getContext('2d');
@@ -471,6 +471,7 @@ function _init() {
 };
 
 function _resize() {
+  _canvas = document.getElementById('myCanvas');
   _currentHeight = window.innerHeight;
   _currentWidth = _currentHeight * _RATIO;
   if (_android || _ios) {
@@ -565,7 +566,7 @@ function PitchToFrequency(octave, semitone) {
 	return 440 * Math.pow( 2, (octave-4)+(semitone-9)/12 );
 };
 
-window.addEventListener('load', _init, false);
+//window.addEventListener('load', _init, false);
 window.addEventListener('resize', _resize, false);
 
 /*
